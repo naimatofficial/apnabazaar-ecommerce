@@ -23,7 +23,7 @@ const destoryData = async () => {
 		console.log("DATA DESTORY!");
 		process.exit();
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		process.exit(1);
 	}
 };
@@ -49,7 +49,7 @@ const importData = async () => {
 		console.log("DATA IMPORTED!");
 		process.exit();
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		process.exit(1);
 	}
 };

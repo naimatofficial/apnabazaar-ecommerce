@@ -23,7 +23,7 @@ router.get(
 router.get(
 	"/:id",
 	asyncHandler(async (req, res) => {
-		const product = await Product.findById(req.params.id);
+		const product = await Product.findOne({ _id: req.params.id });
 		if (product) {
 			res.json(product);
 		} else {
@@ -31,5 +31,9 @@ router.get(
 		}
 	})
 );
+
+router.get("/cart", (req, res) => {
+	res.json();
+});
 
 export default router;

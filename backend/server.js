@@ -11,15 +11,11 @@ connectDB();
 
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
-
-app.use(express.json());
-
 app.get("/", (req, res) => {
 	res.send("API is running");
 });
 
-app.use("/api/products", productRoutes);
+app.use("/products", productRoutes);
 
 app.use(notFound);
 

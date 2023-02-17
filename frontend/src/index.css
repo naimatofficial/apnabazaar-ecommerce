@@ -1,0 +1,33 @@
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+main {
+	min-height: 80vh;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+h3 {
+	padding: 1rem 0;
+}
+
+.ratin span {
+	margin: 0.1rem;
+}
+
+.price {
+	font-weight: 700;
+}

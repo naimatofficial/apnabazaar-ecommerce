@@ -20,6 +20,16 @@ a:link {
 	text-decoration: none;
 }
 
+h1 {
+	font-size: 1.8rem;
+	padding: 1rem 0rem;
+}
+
+h2 {
+	font-size: 1.4rem;
+	padding: 0.5rem 0rem;
+}
+
 h3 {
 	padding: 1rem 0;
 }

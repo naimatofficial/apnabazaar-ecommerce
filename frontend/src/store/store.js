@@ -9,16 +9,19 @@ import {
 
 import { cartReducer } from "./reducers/cartReducer";
 
+// combine reducers from state
 const reducer = combineReducers({
 	productDetails: productDetailsReducer,
 	productList: productListReducer,
 	cart: cartReducer,
 });
 
-const getCartItemsFromLocalStorage = localStorage.getItem("cartItem")
-	? JSON.parse(localStorage.getItem().cart.cartItems)
+// get the data from local storage
+const getCartItemsFromLocalStorage = localStorage.getItem("cartItems")
+	? JSON.parse(localStorage.getItem("cartItems"))
 	: [];
 
+// set the initial states
 const initialState = {
 	cart: { cartItems: getCartItemsFromLocalStorage },
 };

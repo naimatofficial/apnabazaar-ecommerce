@@ -43,11 +43,11 @@ function ProductScreen() {
 				<Message variant={"danger"}>{error}</Message>
 			) : (
 				<Row>
-					<Col md={6}>
+					<Col md={4}>
 						{/* fluid: fit the container */}
 						<Image src={product.image} fluid />
 					</Col>
-					<Col md={3}>
+					<Col md={5}>
 						<ListGroup variant="flush">
 							<ListGroup.Item>
 								<h2>{product.name}</h2>
@@ -95,11 +95,9 @@ function ProductScreen() {
 													}}
 												>
 													{[...Array(product.countInStock).keys()].map((x) => (
-														// <select name="qty" id={x + 1}>
 														<option key={x + 1} value={x + 1}>
 															{x + 1}
 														</option>
-														// </select>
 													))}
 												</Form.Control>
 											</Col>

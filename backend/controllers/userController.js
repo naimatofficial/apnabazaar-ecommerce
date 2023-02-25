@@ -30,7 +30,7 @@ export const userAuth = asyncHandler(async (req, res) => {
 // @access Public
 
 export const registerUser = asyncHandler(async (req, res) => {
-	const { name, email, password, isAdmin } = req.body;
+	const { name, email, password } = req.body;
 
 	const userExisit = await User.findOne({ email });
 
@@ -43,7 +43,6 @@ export const registerUser = asyncHandler(async (req, res) => {
 		name,
 		email,
 		password,
-		isAdmin,
 	});
 
 	if (user) {

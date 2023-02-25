@@ -59,7 +59,7 @@ export const registerUser = asyncHandler(async (req, res) => {
 	}
 });
 
-// @desc   Register User
+// @desc   Get User Profile
 // @route  GET /users/profile
 // @access Private
 
@@ -77,4 +77,34 @@ export const getUserProfile = asyncHandler(async (req, res) => {
 		res.status(404);
 		throw new Error("User not found");
 	}
+});
+
+// @desc   Update User Profile
+// @route  PUT /users/profile
+// @access Private
+
+export const updateUserProfile = asyncHandler(async (req, res) => {
+	const user = await User.findById(req.user._id);
+
+	if (user) {
+		user.name = req.body.name || user.name;
+		user.email = req.body.email || user.email;
+
+		if (req.body.password) {
+			user.password = req.body.password;
+		}
+	} else {
+		res.status(404);
+		throw new Error("User not found");
+	}
+
+	const updatedUser = await user.save();
+
+	res.json({
+		_id: updatedUser._id,
+		name: updatedUser.name,
+		email: updatedUser.email,
+		isAdmin: updatedUser.isAdmin,
+		token: generateTokens(user._id),
+	});
 });

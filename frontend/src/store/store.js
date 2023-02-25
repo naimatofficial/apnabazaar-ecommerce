@@ -8,7 +8,12 @@ import {
 } from "./reducers/productReducers";
 
 import { cartReducer } from "./reducers/cartReducer";
-import { userLoginReducer } from "./reducers/userReducer";
+import {
+	userDetailsReducer,
+	userLoginReducer,
+	userRegisterReducer,
+	userUpdateProfileReducer,
+} from "./reducers/userReducer";
 
 // combine reducers from state
 const reducer = combineReducers({
@@ -16,6 +21,9 @@ const reducer = combineReducers({
 	productList: productListReducer,
 	cart: cartReducer,
 	userLogin: userLoginReducer,
+	userRegister: userRegisterReducer,
+	userDetails: userDetailsReducer,
+	userUpdateProfile: userUpdateProfileReducer,
 });
 
 // get the data from local storage

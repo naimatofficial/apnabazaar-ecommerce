@@ -10,6 +10,7 @@ import { Container } from "react-bootstrap";
 import "./App.css";
 import "./bootstrap.min.css";
 import CartScreen from "./screens/CartScreen";
+import FormScreen from "./screens/FormScreen";
 
 function App() {
 	return (
@@ -19,9 +20,10 @@ function App() {
 				<main className="py-3">
 					<Container>
 						<Routes>
-							<Route path="/" element={<HomeScreen />} exact />
+							<Route path="/login" element={<FormScreen />} />
 							<Route path="/products/:id" element={<ProductScreen />} />
 							<Route path="/cart/:id?" element={<CartScreen />} />
+							<Route path="/" element={<HomeScreen />} exact />
 						</Routes>
 					</Container>
 				</main>

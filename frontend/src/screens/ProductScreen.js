@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Rating from "../components/Rating";
 import { useDispatch, useSelector } from "react-redux";
-import { detailProduct } from "../store/actions/productAction";
+import { listProductDetails } from "../store/actions/productAction";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import {
@@ -26,7 +26,7 @@ function ProductScreen() {
 	const { loading, product, error } = productDetails;
 
 	useEffect(() => {
-		dispatch(detailProduct(id));
+		dispatch(listProductDetails(id));
 	}, [dispatch, id]);
 
 	const addToCartHandler = () => {

@@ -7,7 +7,7 @@ const orderSchema = mongoose.Schema(
 			required: true,
 			ref: "User",
 		},
-		orderItem: [
+		orderItems: [
 			{
 				name: { type: String, required: true },
 				price: { type: Number, required: true },
@@ -27,7 +27,7 @@ const orderSchema = mongoose.Schema(
 			country: { type: String, required: true },
 		},
 		paymentMethod: {
-			type: Boolean,
+			type: String,
 			required: true,
 		},
 		paymentResult: {

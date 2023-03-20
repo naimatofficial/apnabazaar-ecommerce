@@ -93,18 +93,84 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 		if (req.body.password) {
 			user.password = req.body.password;
 		}
+
+		const updatedUser = await user.save();
+
+		res.json({
+			_id: updatedUser._id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+			isAdmin: updatedUser.isAdmin,
+			token: generateTokens(user._id),
+		});
 	} else {
 		res.status(404);
 		throw new Error("User not found");
 	}
+});
 
-	const updatedUser = await user.save();
+// @desc   Get all Users
+// @route  GET /users
+// @access Private/Admin
 
-	res.json({
-		_id: updatedUser._id,
-		name: updatedUser.name,
-		email: updatedUser.email,
-		isAdmin: updatedUser.isAdmin,
-		token: generateTokens(user._id),
-	});
+export const getUsers = asyncHandler(async (req, res) => {
+	const users = await User.find({});
+	res.json(users);
+});
+
+// @desc   Delete the user by id
+// @route  DELETE /users/:id
+// @access Private/Admin
+
+export const deleteUser = asyncHandler(async (req, res) => {
+	const user = await User.findById(req.params.id);
+
+	if (user) {
+		await user.remove();
+		res.json("user removed");
+	} else {
+		res.status(404);
+		throw new Error("no user found");
+	}
+});
+
+// @desc   GET the user by id
+// @route  GET /users/:id
+// @access Private/Admin
+
+export const getUserById = asyncHandler(async (req, res) => {
+	const user = await User.findById(req.params.id).select("-password");
+
+	if (user) {
+		res.json(user);
+	} else {
+		res.status(404);
+		throw new Error("no user found");
+	}
+});
+
+// // @desc   Update User only Admin
+// // @route  PUT /users/:id
+// // @access Private
+
+export const updateUser = asyncHandler(async (req, res) => {
+	const user = await User.findById(req.params.id);
+
+	if (user) {
+		user.name = req.body.name || user.name;
+		user.email = req.body.email || user.email;
+		user.isAdmin = req.body.isAdmin || user.isAdmin;
+
+		const updatedUser = await user.save();
+
+		res.json({
+			_id: updatedUser._id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+			isAdmin: updatedUser.isAdmin,
+		});
+	} else {
+		res.status(404);
+		throw new Error("User not found");
+	}
 });

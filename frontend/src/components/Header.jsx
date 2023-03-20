@@ -1,14 +1,10 @@
 import React from "react";
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Container, Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 import { logout } from "../store/actions/userActions";
-
-import { Image } from "react-bootstrap";
-
-import Logo from "../naimatshop-logo.png";
-
+import BrandLogo from "../apna-bazaar-logo2.png";
 const Header = () => {
 	const dispatch = useDispatch();
 
@@ -24,9 +20,8 @@ const Header = () => {
 			<Navbar bg="dark" variant="dark" collapseOnSelect>
 				<Container>
 					<LinkContainer to="/">
-						<Navbar.Brand className="d-flex align-items-center">
-							<Image src={Logo} style={{ width: "50px" }} fluid />
-							<span>NaimatShop</span>
+						<Navbar.Brand>
+							<Image src={BrandLogo} style={{ width: "150px" }} fluid />
 						</Navbar.Brand>
 					</LinkContainer>
 					<Nav className="ml-auto">
@@ -40,9 +35,11 @@ const Header = () => {
 								<LinkContainer to="/profile">
 									<NavDropdown.Item>Profile</NavDropdown.Item>
 								</LinkContainer>
-								<NavDropdown.Item onClick={logoutHandler}>
-									Logout
-								</NavDropdown.Item>
+								<LinkContainer to="/">
+									<NavDropdown.Item onClick={logoutHandler}>
+										Logout
+									</NavDropdown.Item>
+								</LinkContainer>
 							</NavDropdown>
 						) : (
 							<LinkContainer to="/login">
@@ -50,6 +47,19 @@ const Header = () => {
 									<i className="fas fa-shopping-cart"></i> Sign In
 								</Nav.Link>
 							</LinkContainer>
+						)}
+						{userInfo && userInfo.isAdmin && (
+							<NavDropdown title="Admin" id="adminlist">
+								<LinkContainer to="/admin/userlist">
+									<NavDropdown.Item>Users</NavDropdown.Item>
+								</LinkContainer>
+								<LinkContainer to="/admin/productlist">
+									<NavDropdown.Item>Products</NavDropdown.Item>
+								</LinkContainer>
+								<LinkContainer to="/admin/orderlist">
+									<NavDropdown.Item>Orders</NavDropdown.Item>
+								</LinkContainer>
+							</NavDropdown>
 						)}
 					</Nav>
 				</Container>

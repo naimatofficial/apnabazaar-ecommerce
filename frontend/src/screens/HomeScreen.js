@@ -6,16 +6,19 @@ import Product from "../components/Product";
 import { listProducts } from "../store/actions/productAction";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import { useParams } from "react-router-dom";
 
 function HomeScreen() {
+	const params = useParams();
 	const productList = useSelector((state) => state.productList);
 	const { loading, error, products } = productList;
+	const keyword = params.keyword;
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(listProducts());
-	}, [dispatch]);
+		dispatch(listProducts(keyword));
+	}, [dispatch, keyword]);
 
 	return (
 		<>

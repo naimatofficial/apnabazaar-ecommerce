@@ -19,7 +19,6 @@ import {
 	Form,
 	FormGroup,
 } from "react-bootstrap";
-import Alert from "react-bootstrap/Alert";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../store/constants/productConstant";
 
 function ProductScreen() {
@@ -56,10 +55,8 @@ function ProductScreen() {
 	const productReviewHandler = (e) => {
 		e.preventDefault();
 		dispatch(createProductReview(productId, { rating, comment }));
-		successProductReview && (
-			<Alert variant="success">Your review are added successfully!</Alert>
-		);
 	};
+
 	return (
 		<>
 			<Link to="/" className="btn btn-light my-3">
@@ -73,7 +70,7 @@ function ProductScreen() {
 				<>
 					<Row>
 						<Col md={4}>
-							{/* fluproductId: fit the container */}
+							{/* fluid: fit the container */}
 							<Image src={product.image} alt={product.name} fluid />
 						</Col>
 						<Col md={5}>

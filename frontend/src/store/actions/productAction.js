@@ -21,29 +21,31 @@ import {
 } from "../constants/productConstant";
 
 // redux thunk allow to function within the another function
-export const listProducts = () => async (dispatch) => {
-	try {
-		// api request
-		dispatch({ type: PRODUCT_LIST_REQUEST });
+export const listProducts =
+	(keyword = "") =>
+	async (dispatch) => {
+		try {
+			// api request
+			dispatch({ type: PRODUCT_LIST_REQUEST });
 
-		// fetch the data from this api
-		const { data } = await axios.get("/products");
+			// fetch the data from this api
+			const { data } = await axios.get(`/products?keyword=${keyword}`);
 
-		// and finaly dispatch the funciton with payload (products list)
-		dispatch({
-			type: PRODUCT_LIST_SUCCESS,
-			payload: data,
-		});
-	} catch (error) {
-		dispatch({
-			type: PRODUCT_LIST_FAIL,
-			payload:
-				error.response && error.response.data.message
-					? error.response.data.message
-					: error.message,
-		});
-	}
-};
+			// and finaly dispatch the funciton with payload (products list)
+			dispatch({
+				type: PRODUCT_LIST_SUCCESS,
+				payload: data,
+			});
+		} catch (error) {
+			dispatch({
+				type: PRODUCT_LIST_FAIL,
+				payload:
+					error.response && error.response.data.message
+						? error.response.data.message
+						: error.message,
+			});
+		}
+	};
 
 export const listProductDetails = (productId) => async (dispatch) => {
 	try {

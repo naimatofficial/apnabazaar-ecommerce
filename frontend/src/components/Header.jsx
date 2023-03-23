@@ -1,8 +1,9 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-
+import SearchBox from "./SearchBox";
 import { logout } from "../store/actions/userActions";
 import BrandLogo from "../apna-bazaar-logo2.png";
 const Header = () => {
@@ -24,6 +25,7 @@ const Header = () => {
 							<Image src={BrandLogo} style={{ width: "150px" }} fluid />
 						</Navbar.Brand>
 					</LinkContainer>
+					<SearchBox />
 					<Nav className="ml-auto">
 						{userInfo ? (
 							userInfo.isAdmin ? (

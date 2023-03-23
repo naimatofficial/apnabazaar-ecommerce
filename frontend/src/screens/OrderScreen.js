@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
@@ -15,14 +15,14 @@ import {
 	ORDER_PAY_RESET,
 	ORDER_DELIVER_RESET,
 } from "../store/constants/orderConstants";
-// import { ORDER_CREATE_RESET } from "../constants/orderConstants";
-// import { USER_DETAILS_RESET } from "../constants/userConstants";
 
 const OrderScreen = () => {
 	const [sdkReady, setSdkReady] = useState(false);
 	const params = useParams();
 	const orderId = params.id;
+
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userInfo } = userLogin;
@@ -36,7 +36,21 @@ const OrderScreen = () => {
 	const orderDeliver = useSelector((state) => state.orderDeliver);
 	const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
+	if (!loading) {
+		// Calculate prices
+		const addDecimals = (num) => {
+			return (Math.round(num * 100) / 100).toFixed(2);
+		};
+
+		order.itemsPrice = addDecimals(
+			order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+		);
+	}
+
 	useEffect(() => {
+		if (!userInfo) {
+			navigate("/login");
+		}
 		// add the dynamic script in the body
 		const addPayPalSdkScript = async () => {
 			// rename the data property to clientId
@@ -52,7 +66,7 @@ const OrderScreen = () => {
 		};
 
 		// dispatch the getOrderDetails and order-pay-reset either the order and succesPay are availible
-		if (!order || successPay || successDeliver || order._id === orderId) {
+		if (!order || successPay || successDeliver || order._id !== orderId) {
 			dispatch({ type: ORDER_PAY_RESET });
 			dispatch({ type: ORDER_DELIVER_RESET });
 			dispatch(getOrderDetails(orderId));
@@ -63,30 +77,21 @@ const OrderScreen = () => {
 				setSdkReady(true);
 			}
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch, orderId, order, successPay, successDeliver]);
-
-	if (!loading) {
-		// Calculate prices
-		const addDecimals = (num) => {
-			return (Math.round(num * 100) / 100).toFixed(2);
-		};
-
-		order.itemsPrice = addDecimals(
-			order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-		);
-	}
 
 	const successPaymentHandler = (paymentResult) => {
 		dispatch(payOrder(orderId, paymentResult));
 	};
 
-	const orderDeliverHanlder = (order) => {
+	const orderDeliverHanlder = () => {
 		dispatch(deliverOrder(order));
 	};
+
 	return loading ? (
 		<Loader />
 	) : error ? (
-		<Message variant="danger">No Order Found</Message>
+		<Message variant="danger">{error}</Message>
 	) : (
 		<>
 			<Row>
@@ -211,7 +216,7 @@ const OrderScreen = () => {
 									<Button
 										type="button"
 										className="btn btn-block"
-										onClick={orderDeliverHanlder(order)}
+										onClick={orderDeliverHanlder}
 									>
 										Mark As Deliver
 									</Button>

@@ -25,11 +25,24 @@ const Header = () => {
 						</Navbar.Brand>
 					</LinkContainer>
 					<Nav className="ml-auto">
-						<LinkContainer to="/cart">
-							<Nav.Link>
-								<i className="fas fa-shopping-cart"></i> Cart
-							</Nav.Link>
-						</LinkContainer>
+						{userInfo ? (
+							userInfo.isAdmin ? (
+								""
+							) : (
+								<LinkContainer to="/cart">
+									<Nav.Link>
+										<i className="fas fa-shopping-cart"></i> Cart
+									</Nav.Link>
+								</LinkContainer>
+							)
+						) : (
+							<LinkContainer to="/cart">
+								<Nav.Link>
+									<i className="fas fa-shopping-cart"></i> Cart
+								</Nav.Link>
+							</LinkContainer>
+						)}
+
 						{userInfo ? (
 							<NavDropdown title={userInfo.name} id="username">
 								<LinkContainer to="/profile">

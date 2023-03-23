@@ -2,6 +2,7 @@ import express from "express";
 import * as dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import path from "path";
+import morgan from "morgan";
 
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -15,6 +16,12 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+// This is show the api calls in the console
+if (process.env.NODE_MODE === "development") {
+	app.use(morgan("dev"));
+}
+
 app.use(express.json());
 
 app.get("/", (req, res) => {

@@ -18,18 +18,23 @@ import {
 	PRODUCT_CREATE_REVIEW_FAIL,
 	PRODUCT_CREATE_REVIEW_SUCCESS,
 	PRODUCT_CREATE_REVIEW_REQUEST,
+	PRODUCT_TOP_FAIL,
+	PRODUCT_TOP_SUCCESS,
+	PRODUCT_TOP_REQUEST,
 } from "../constants/productConstant";
 
 // redux thunk allow to function within the another function
 export const listProducts =
-	(keyword = "") =>
+	(keyword = "", pageNumber = "") =>
 	async (dispatch) => {
 		try {
 			// api request
 			dispatch({ type: PRODUCT_LIST_REQUEST });
 
 			// fetch the data from this api
-			const { data } = await axios.get(`/products?keyword=${keyword}`);
+			const { data } = await axios.get(
+				`/products?keyword=${keyword}&page=${pageNumber}`
+			);
 
 			// and finaly dispatch the funciton with payload (products list)
 			dispatch({
@@ -46,6 +51,27 @@ export const listProducts =
 			});
 		}
 	};
+
+export const listTopProducts = () => async (dispatch) => {
+	try {
+		dispatch({ type: PRODUCT_TOP_REQUEST });
+
+		const { data } = await axios.get(`/products/top`);
+
+		dispatch({
+			type: PRODUCT_TOP_SUCCESS,
+			payload: data,
+		});
+	} catch (error) {
+		dispatch({
+			type: PRODUCT_TOP_FAIL,
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message,
+		});
+	}
+};
 
 export const listProductDetails = (productId) => async (dispatch) => {
 	try {

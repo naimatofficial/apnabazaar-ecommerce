@@ -56,7 +56,7 @@ const CartScreen = () => {
 											/>
 										</Col>
 										<Col md={3}>
-											<Link to={`/products/${item.product}`}>{item.name}</Link>
+											<Link to={`/product/${item.product}`}>{item.name}</Link>
 										</Col>
 										<Col md={2}>${item.price}</Col>
 										<Col md={2}>

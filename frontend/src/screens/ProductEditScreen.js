@@ -84,12 +84,13 @@ const ProductEditScreen = () => {
 
 		try {
 			const config = {
-				header: {
+				headers: {
 					"Content-Type": "multipart/form-data",
 				},
 			};
 
-			const { data } = axios.post("/upload", formData, config);
+			const { data } = await axios.post("/upload", formData, config);
+			console.log("image url", data);
 			setImage(data);
 			setUploading(false);
 		} catch (error) {

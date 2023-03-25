@@ -6,22 +6,20 @@ const Paginate = ({ page, pages, isAdmin = false, keyword = "" }) => {
 	return (
 		pages > 1 && (
 			<Pagination>
-				{[...Array(pages).keys()].map((x) => {
-					return (
-						<LinkContainer
-							key={x + 1}
-							to={
-								!isAdmin
-									? keyword
-										? `/search/${keyword}/page/${x + 1}`
-										: `/page/${x + 1}`
-									: `/admin/productlist/${x + 1}`
-							}
-						>
-							<Pagination.Item active={x + 1 === page}>{x + 1}</Pagination.Item>
-						</LinkContainer>
-					);
-				})}
+				{[...Array(pages).keys()].map((x) => (
+					<LinkContainer
+						key={x + 1}
+						to={
+							!isAdmin
+								? keyword
+									? `/search/${keyword}/page/${x + 1}`
+									: `/page/${x + 1}`
+								: `/admin/productlist/${x + 1}`
+						}
+					>
+						<Pagination.Item active={x + 1 === page}>{x + 1}</Pagination.Item>
+					</LinkContainer>
+				))}
 			</Pagination>
 		)
 	);

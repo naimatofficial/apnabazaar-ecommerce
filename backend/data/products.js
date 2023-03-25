@@ -71,6 +71,66 @@ const products = [
 		rating: 4,
 		numReviews: 12,
 	},
+	{
+		name: "Samsung Galaxy S21 Ultra",
+		image: "/images/galaxy-s21-ultra.jpg",
+		description:
+			"Experience the ultimate in smartphone technology with the Samsung Galaxy S21 Ultra. With a stunning 6.8 inch AMOLED display, 5G connectivity, and a powerful Exynos 2100 processor, this device has it all.",
+		brand: "Samsung",
+		category: "Electronics",
+		price: 1199.99,
+		countInStock: 8,
+		rating: 4.7,
+		numReviews: 20,
+	},
+	{
+		name: "Dell XPS 13",
+		image: "/images/dell-xps-13.jpg",
+		description:
+			"The Dell XPS 13 is a premium laptop that offers incredible performance and stunning design. With a 10th generation Intel Core processor, 16GB of RAM, and a 512GB SSD, this laptop can handle any task you throw at it.",
+		brand: "Dell",
+		category: "Electronics",
+		price: 1299.99,
+		countInStock: 6,
+		rating: 4.6,
+		numReviews: 15,
+	},
+	{
+		name: "Bose QuietComfort 35 II Wireless Headphones",
+		image: "/images/bose-quietcomfort-35-ii.jpg",
+		description:
+			"Experience the ultimate in noise-cancelling technology with the Bose QuietComfort 35 II wireless headphones. With up to 20 hours of battery life and Alexa voice control, these headphones are perfect for travel or work.",
+		brand: "Bose",
+		category: "Electronics",
+		price: 299.99,
+		countInStock: 9,
+		rating: 4.8,
+		numReviews: 18,
+	},
+	{
+		name: "LG CX 55-Inch OLED TV",
+		image: "/images/lg-cx-oled.jpg",
+		description:
+			"The LG CX OLED TV delivers incredible picture quality and stunning design. With a 55-inch OLED display, 120Hz refresh rate, and support for Dolby Vision and Atmos, this TV is perfect for movie nights and gaming.",
+		brand: "LG",
+		category: "Electronics",
+		price: 1499.99,
+		countInStock: 3,
+		rating: 4.9,
+		numReviews: 25,
+	},
+	{
+		name: "Garmin Forerunner 945 Smartwatch",
+		image: "/images/garmin-forerunner-945.jpg",
+		description:
+			"The Garmin Forerunner 945 smartwatch is perfect for athletes and fitness enthusiasts. With GPS tracking, heart rate monitoring, and support for multiple sports, this watch can help you track your progress and achieve your goals.",
+		brand: "Garmin",
+		category: "Electronics",
+		price: 599.99,
+		countInStock: 11,
+		rating: 4.4,
+		numReviews: 13,
+	},
 ];
 
 export default products;

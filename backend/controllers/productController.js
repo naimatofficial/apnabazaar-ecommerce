@@ -5,7 +5,7 @@ import Product from "../models/productModel.js";
 // @route  GET /products?
 // @access Public
 export const getProducts = asyncHandler(async (req, res) => {
-	const pageSize = 3;
+	const pageSize = 2;
 	const page = Number(req.query.pageNumber) || 1;
 
 	const keyword = req.query.keyword
@@ -17,7 +17,7 @@ export const getProducts = asyncHandler(async (req, res) => {
 		  }
 		: {};
 
-	const count = await Product.countDocuments({ ...keyword })
+	const count = await Product.count({ ...keyword })
 		.limit(pageSize)
 		.skip(pageSize * (page - 1));
 

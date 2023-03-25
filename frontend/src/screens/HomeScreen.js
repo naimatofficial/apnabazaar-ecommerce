@@ -9,6 +9,7 @@ import Message from "../components/Message";
 import { useParams } from "react-router-dom";
 import Paginate from "../components/Paginate";
 import ProductCarousel from "../components/ProductCarousel";
+import Meta from "../components/Meta";
 
 function HomeScreen() {
 	const params = useParams();
@@ -27,6 +28,7 @@ function HomeScreen() {
 
 	return (
 		<>
+			<Meta />
 			{!keyword && <ProductCarousel />}
 			{loading ? (
 				<Loader />

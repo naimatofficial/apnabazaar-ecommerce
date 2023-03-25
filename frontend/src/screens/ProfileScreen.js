@@ -10,6 +10,7 @@ import {
 	updateUserProfile,
 } from "../store/actions/userActions";
 import { listMyOrders } from "../store/actions/orderAction";
+import { USER_UPDATE_RESET } from "../store/constants/userConstants";
 
 const ProfileScreen = () => {
 	const dispatch = useDispatch();
@@ -37,7 +38,8 @@ const ProfileScreen = () => {
 		if (!userInfo) {
 			navigate("/login");
 		} else {
-			if (!user.name) {
+			if (!user || !user.name || success) {
+				dispatch({ type: USER_UPDATE_RESET });
 				dispatch(getUserDetails("profile"));
 				dispatch(listMyOrders());
 			} else {
@@ -45,7 +47,7 @@ const ProfileScreen = () => {
 				setEmail(user.email);
 			}
 		}
-	}, [dispatch, user, userInfo, navigate]);
+	}, [dispatch, user, userInfo, navigate, success]);
 
 	const submitHandler = (e) => {
 		e.preventDefault();

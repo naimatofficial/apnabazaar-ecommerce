@@ -20,6 +20,7 @@ import {
 	FormGroup,
 } from "react-bootstrap";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../store/constants/productConstant";
+import Meta from "../components/Meta";
 
 function ProductScreen() {
 	const dispatch = useDispatch();
@@ -68,6 +69,7 @@ function ProductScreen() {
 				<Message variant={"danger"}>{error}</Message>
 			) : (
 				<>
+					<Meta title={product.name} />
 					<Row>
 						<Col md={4}>
 							{/* fluid: fit the container */}
@@ -162,7 +164,8 @@ function ProductScreen() {
 									);
 								})}
 								<ListGroup.Item>
-									<h2>Write a customer review</h2>
+									<h2>Review this product</h2>
+									<p>Share your thoughts with other customers</p>
 									{errorProductReview && (
 										<Message variant="danger">{errorProductReview}</Message>
 									)}

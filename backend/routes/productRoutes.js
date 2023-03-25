@@ -17,12 +17,12 @@ const router = express.Router();
 // router.get("/:id", getProductById);
 
 router.route("/").get(getProducts).post(protect, admin, createProduct);
+router.get("/top", getTopProducts);
 router.route("/:id/reviews").post(protect, createdProductReview);
 router
 	.route("/:id")
 	.get(getProductById)
 	.delete(protect, admin, deleteProduct)
 	.put(protect, admin, updateProduct);
-router.route("/top").get(getTopProducts);
 
 export default router;

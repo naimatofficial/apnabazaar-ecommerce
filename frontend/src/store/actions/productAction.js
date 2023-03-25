@@ -33,7 +33,7 @@ export const listProducts =
 
 			// fetch the data from this api
 			const { data } = await axios.get(
-				`/products?keyword=${keyword}&page=${pageNumber}`
+				`/products?keyword=${keyword}&pageNumber=${pageNumber}`
 			);
 
 			// and finaly dispatch the funciton with payload (products list)

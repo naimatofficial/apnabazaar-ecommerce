@@ -23,8 +23,11 @@ const ProductCarousel = () => {
 		<Carousel pause="hover" className="bg-dark">
 			{products.map((product) => (
 				<Carousel.Item key={product._id}>
-					<Link to={`/product/${product._id}`}>
-						<Image src={product.image} alt={product.name} className="d-block" />
+					<Link
+						to={`/product/${product._id}`}
+						className="d-flex justify-content-centr"
+					>
+						<Image src={product.image} alt={product.name} />
 						<Carousel.Caption className="carousel-caption">
 							<h2>
 								{product.name} (${product.price})

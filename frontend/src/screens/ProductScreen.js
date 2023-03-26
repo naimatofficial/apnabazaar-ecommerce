@@ -179,6 +179,8 @@ function ProductScreen() {
 											<FormGroup controlId="rating" className="mt-2">
 												<Form.Label>Rating</Form.Label>
 												<Form.Control
+													required
+													aria-required
 													as="select"
 													value={rating}
 													onChange={(e) => setRating(e.target.value)}
@@ -196,6 +198,8 @@ function ProductScreen() {
 														as="textarea"
 														row="3"
 														value={comment}
+														required
+														aria-required
 														onChange={(e) => setComment(e.target.value)}
 													/>
 												</FormGroup>

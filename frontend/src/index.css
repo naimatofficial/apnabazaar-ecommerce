@@ -21,6 +21,12 @@ a:link {
 	text-decoration: none;
 }
 
+.sticky-nav {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
 h1 {
 	font-size: 1.8rem;
 	padding: 1rem 0rem;
@@ -56,6 +62,7 @@ h3 {
 }
 
 .carousel-caption h2 {
+	font-size: 1rem;
 	color: #fff;
 }
 
@@ -63,6 +70,8 @@ h3 {
 	height: 300px;
 	padding: 30px;
 	margin: 40px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .carousel a {

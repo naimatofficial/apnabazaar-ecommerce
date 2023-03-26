@@ -1,11 +1,9 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
+import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import SearchBox from "./SearchBox";
 import { logout } from "../store/actions/userActions";
-import BrandLogo from "../apna-bazaar-logo2.png";
 const Header = () => {
 	const dispatch = useDispatch();
 
@@ -17,16 +15,21 @@ const Header = () => {
 	};
 
 	return (
-		<header>
-			<Navbar bg="dark" variant="dark" collapseOnSelect>
+		<header className="sticky-nav">
+			<Navbar
+				bg="dark"
+				variant="dark"
+				collapseOnSelect
+				className="navbar navbar-expand-lg navbar-dark bg-primary"
+			>
 				<Container>
 					<LinkContainer to="/">
 						<Navbar.Brand>
-							<Image src={BrandLogo} style={{ width: "150px" }} fluid />
+							<span className="md:fs-1">Apna Bazaar</span>
 						</Navbar.Brand>
 					</LinkContainer>
 					<SearchBox />
-					<Nav className="ml-auto">
+					<Nav className="ml-auto ">
 						{userInfo ? (
 							userInfo.isAdmin ? (
 								""
@@ -40,7 +43,8 @@ const Header = () => {
 						) : (
 							<LinkContainer to="/cart">
 								<Nav.Link>
-									<i className="fas fa-shopping-cart"></i> Cart
+									<i className="fas fa-shopping-cart"></i>
+									Cart
 								</Nav.Link>
 							</LinkContainer>
 						)}

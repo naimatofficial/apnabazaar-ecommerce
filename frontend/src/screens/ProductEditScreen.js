@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Image } from "react-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
@@ -90,7 +90,6 @@ const ProductEditScreen = () => {
 			};
 
 			const { data } = await axios.post("/upload", formData, config);
-			console.log("image url", data);
 			setImage(data);
 			setUploading(false);
 		} catch (error) {
@@ -129,8 +128,18 @@ const ProductEditScreen = () => {
 								onChange={(e) => setPrice(e.target.value)}
 							/>
 						</Form.Group>
+
 						<Form.Group controlId="image" className="mb-3">
-							<Form.Label>Image</Form.Label>
+							<Image
+								src={product.image}
+								alt={product.name}
+								style={{
+									width: "600px",
+									height: "400px",
+									objectFit: "contain",
+									marginBottom: "10px",
+								}}
+							/>
 							<Form.Control
 								type="text"
 								value={image}

@@ -10,7 +10,7 @@ import {
 	updateUserProfile,
 } from "../store/actions/userActions";
 import { listMyOrders } from "../store/actions/orderAction";
-import { USER_UPDATE_RESET } from "../store/constants/userConstants";
+import { USER_UPDATE_PROFILE_RESET } from "../store/constants/userConstants";
 
 const ProfileScreen = () => {
 	const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const ProfileScreen = () => {
 			navigate("/login");
 		} else {
 			if (!user || !user.name || success) {
-				dispatch({ type: USER_UPDATE_RESET });
+				dispatch({ type: USER_UPDATE_PROFILE_RESET });
 				dispatch(getUserDetails("profile"));
 				dispatch(listMyOrders());
 			} else {
@@ -51,7 +51,6 @@ const ProfileScreen = () => {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
-		navigate("/");
 		if (password !== confirmPassword) {
 			setMessage("Password do not match!");
 		} else {

@@ -215,7 +215,7 @@ const OrderScreen = () => {
 								<ListGroup.Item>
 									<Button
 										type="button"
-										className="btn btn-block"
+										className="btn btn-block w-100"
 										onClick={orderDeliverHanlder}
 									>
 										Mark As Deliver
